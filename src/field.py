@@ -10,6 +10,10 @@ ON_AIR = False
 
 DINOSAUR_POSITION = FLOOR_POSITION
 
+SCORE_POSITION = ((FIELD_WIDTH-2)/2,1)
+
+SCORE = 0
+
 def jump():
     global ON_AIR, DINOSAUR_POSITION
     if not ON_AIR:
@@ -51,7 +55,9 @@ def draw_field(show_instructions_text=False):
                 print(WALL)
             else:
                 print(WALL, end='')
-        elif col == DINOSAUR_POSITION[0] and row == DINOSAUR_POSITION[1] and not show_instructions_text:
+        elif (col,row) == SCORE_POSITION:
+            print(SCORE, end='')
+        elif (col,row) == DINOSAUR_POSITION and not show_instructions_text:
             print(DINOSAUR, end='')
         else:
             print(BACKGROUND, end='')
