@@ -8,11 +8,11 @@ AIR_POSITION = ((FIELD_WIDTH/2)-1, FIELD_HEIGHT-4)
 
 ON_AIR = False
 
-DINOSAUR_POSITION = FLOOR_POSITION
-
-SCORE_POSITION = ((FIELD_WIDTH-2)/2,1)
+SCORE_POSITION = (((FIELD_WIDTH)/2),1)
 
 SCORE = 0
+
+DINOSAUR_POSITION = FLOOR_POSITION
 
 def jump():
     global ON_AIR, DINOSAUR_POSITION
@@ -36,7 +36,7 @@ def get_positions_from_instructions(instructions):
 
     return positions
 
-def draw_field(show_instructions_text=False):
+def draw_field(obstacles: list, show_instructions_text=False):
     
     instructions_positions = get_positions_from_instructions(INSTRUCTIONS_TEXT)
     
@@ -55,6 +55,8 @@ def draw_field(show_instructions_text=False):
                 print(WALL)
             else:
                 print(WALL, end='')
+        elif (col,row) in obstacles:
+            print(WALL, end='')
         elif (col,row) == SCORE_POSITION:
             print(SCORE, end='')
         elif (col,row) == DINOSAUR_POSITION and not show_instructions_text:
